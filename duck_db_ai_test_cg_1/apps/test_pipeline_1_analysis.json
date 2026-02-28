@@ -1,0 +1,9 @@
+{
+  "id" : "test_pipeline_1_analysis",
+  "metainfo" : {
+    "description" : "",
+    "pipelineId" : "test_pipeline_1",
+    "parameterSet" : ""
+  },
+  "instances" : { }
+}
