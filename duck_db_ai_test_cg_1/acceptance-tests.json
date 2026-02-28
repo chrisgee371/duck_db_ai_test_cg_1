@@ -1,0 +1,9 @@
+# Naming conventions
+
+Use only these model prefixes in the light build:
+
+- `src__` for direct typed source models
+- `int__` for small reusable intermediate models
+- `mart__` for final summary and ranking outputs
+
+Do not invent additional naming families.

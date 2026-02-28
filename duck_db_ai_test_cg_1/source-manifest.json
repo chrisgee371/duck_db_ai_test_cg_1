@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "delivery_variant": "light_single_iteration",
+  "stage_tests": [
+    {
+      "stage_id": 1,
+      "tests": [
+        {
+          "test_id": "LGT-001",
+          "type": "exact_row_count",
+          "model": "src__website_sessions",
+          "expected_value": 472871
+        },
+        {
+          "test_id": "LGT-002",
+          "type": "exact_row_count",
+          "model": "src__website_pageviews",
+          "expected_value": 1188124
+        },
+        {
+          "test_id": "LGT-003",
+          "type": "exact_row_count",
+          "model": "src__orders",
+          "expected_value": 32313
+        },
+        {
+          "test_id": "LGT-004",
+          "type": "exact_row_count",
+          "model": "src__order_item_refunds",
+          "expected_value": 1731
+        },
+        {
+          "test_id": "LGT-005",
+          "type": "pk_unique",
+          "model": "src__website_sessions",
+          "columns": [
+            "website_session_id"
+          ]
+        },
+        {
+          "test_id": "LGT-006",
+          "type": "pk_unique",
+          "model": "src__website_pageviews",
+          "columns": [
+            "website_pageview_id"
+          ]
+        },
+        {
+          "test_id": "LGT-007",
+          "type": "pk_unique",
+          "model": "src__orders",
+          "columns": [
+            "order_id"
+          ]
+        },
+        {
+          "test_id": "LGT-008",
+          "type": "pk_unique",
+          "model": "src__order_item_refunds",
+          "columns": [
+            "order_item_refund_id"
+          ]
+        },
+        {
+          "test_id": "LGT-009",
+          "type": "grain_assertion",
+          "model": "int__order_net_value",
+          "expected_grain": "one row per order_id"
+        },
+        {
+          "test_id": "LGT-010",
+          "type": "expression_check",
+          "model": "int__order_net_value",
+          "rule": "net_revenue_usd = gross_revenue_usd - total_refund_amount_usd"
+        },
+        {
+          "test_id": "LGT-011",
+          "type": "grain_assertion",
+          "model": "int__session_core",
+          "expected_grain": "one row per website_session_id"
+        },
+        {
+          "test_id": "LGT-012",
+          "type": "non_null",
+          "model": "int__session_core",
+          "columns": [
+            "session_month",
+            "entry_page",
+            "utm_source_normalized",
+            "utm_campaign_normalized",
+            "device_type_normalized"
+          ]
+        },
+        {
+          "test_id": "LGT-013",
+          "type": "grain_assertion",
+          "model": "mart__core_leak_summary",
+          "expected_grain": "one row per session_month x utm_source_normalized x utm_campaign_normalized x device_type_normalized x entry_page"
+        },
+        {
+          "test_id": "LGT-014",
+          "type": "range_check",
+          "model": "mart__core_leak_summary",
+          "column": "conversion_rate",
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "test_id": "LGT-015",
+          "type": "range_check",
+          "model": "mart__core_leak_summary",
+          "column": "refund_value_share",
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "test_id": "LGT-016",
+          "type": "range_check",
+          "model": "mart__priority_actions",
+          "column": "severity_score",
+          "min_value": 0,
+          "max_value": 100
+        },
+        {
+          "test_id": "LGT-017",
+          "type": "non_null",
+          "model": "mart__priority_actions",
+          "columns": [
+            "priority_rank",
+            "recommended_action",
+            "confidence_level"
+          ]
+        },
+        {
+          "test_id": "LGT-018",
+          "type": "max_row_count",
+          "model": "mart__priority_actions",
+          "expected_value": 50
+        },
+        {
+          "test_id": "LGT-019",
+          "type": "ref_required",
+          "model_family": "all_generated_models",
+          "rule": "Use {{ ref('model_name') }} whenever one generated model depends on another generated model."
+        }
+      ]
+    }
+  ]
+}

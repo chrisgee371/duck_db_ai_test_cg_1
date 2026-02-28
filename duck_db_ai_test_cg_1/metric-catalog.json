@@ -1,0 +1,10 @@
+# Quality gates
+
+The light build is complete only if all of the following are true:
+
+1. Source models match the exact row counts in `contracts/acceptance-tests.json`.
+2. `int__order_net_value` is one row per `order_id`.
+3. `int__session_core` is one row per `website_session_id`.
+4. `mart__core_leak_summary` uses month grain and the exact listed segment dimensions.
+5. `mart__priority_actions` contains ranked actions with non-null `recommended_action` and `confidence_level`.
+6. All generated-model dependencies use `{{ ref('model_name') }}`.

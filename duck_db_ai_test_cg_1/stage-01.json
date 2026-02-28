@@ -1,0 +1,18 @@
+# Iteration overview
+
+This delivery has exactly one stage.
+
+## Stage 1 - single-pass core leak summary
+
+Build these models in order:
+
+1. `src__website_sessions`
+2. `src__website_pageviews`
+3. `src__orders`
+4. `src__order_item_refunds`
+5. `int__order_net_value`
+6. `int__session_core`
+7. `mart__core_leak_summary`
+8. `mart__priority_actions`
+
+Stop after these outputs are complete and validated.
