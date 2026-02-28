@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "delivery_variant": "light_single_iteration",
+  "stage_count": 1,
+  "stages": [
+    {
+      "stage_id": 1,
+      "stage_name": "single-pass core leak summary",
+      "objective": "Create a minimal but usable session-to-order diagnostic layer and a ranked priority-actions table.",
+      "inputs": [
+        "datasets/maven-fuzzy-factory/raw/website_sessions.csv",
+        "datasets/maven-fuzzy-factory/raw/website_pageviews.csv",
+        "datasets/maven-fuzzy-factory/raw/orders.csv",
+        "datasets/maven-fuzzy-factory/raw/order_item_refunds.csv"
+      ],
+      "required_outputs": [
+        "src__website_sessions",
+        "src__website_pageviews",
+        "src__orders",
+        "src__order_item_refunds",
+        "int__order_net_value",
+        "int__session_core",
+        "mart__core_leak_summary",
+        "mart__priority_actions"
+      ],
+      "completion_criteria": [
+        "All required models are created.",
+        "All joins follow contracts/join-contracts.json.",
+        "All generated-model dependencies use {{ ref('model_name') }}.",
+        "All acceptance tests for stage 1 are satisfied."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Forbidden patterns
+
+Do not do any of the following in the light build:
+
+- add extra stages or iterations
+- add page-path sequencing or funnel-step analysis
+- add experiment-window comparisons
+- add product launch analysis
+- add bundle or cross-sell analysis
+- use `order_items` or `products` unless the user explicitly expands scope
+- discard null traffic values instead of normalizing them
+- use `{{ source() }}` when a generated model should use `{{ ref('model_name') }}`

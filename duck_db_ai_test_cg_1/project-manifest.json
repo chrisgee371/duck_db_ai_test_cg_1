@@ -1,0 +1,34 @@
+# Concept
+
+This light build turns the full revenue-leak idea into a single-pass diagnostic slice.
+
+## Objective
+
+Find the traffic and landing-page segments that are hurting commercial performance, using only the safest and most direct path from:
+
+- session
+- first page viewed
+- order outcome
+- refund outcome
+
+## Final outputs
+
+- `mart__core_leak_summary`
+  - monthly segment summary
+  - sessions
+  - orders
+  - conversion rate
+  - gross revenue
+  - net revenue
+  - revenue per session
+  - refund value share
+
+- `mart__priority_actions`
+  - ranked segments to investigate first
+  - severity score
+  - recommended action
+  - confidence level
+
+## Why this is the right fallback
+
+It keeps enough of the original business idea to be useful, while removing the parts most likely to cause generation drift or lineage errors.
